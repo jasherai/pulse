@@ -1,4 +1,8 @@
 function pulseInit() {
+  var buffer_size = 60;
+  var events_per_second_buffer = [];
+  var nginx_requests_per_second_buffer = [];
+
   if (!window.WebSocket) {
     alert("WebSocket not supported by this browser!");
   } else {
@@ -19,10 +23,20 @@ function pulseInit() {
         var stat_val = stat[1];
         console.log("websocket message stat_key=" + stat_key);
         if (stat_key == "events_per_second") {
-          $("#events_per_second").html(stat_val);
+          if (events_per_second_buffer.length == buffer_size) {
+            events_per_second_buffer.shift();
+          }
+          events_per_second_buffer.push(stat_val);
+          $("#events_per_second_scalar").html(stat_val);
+          $("#events_per_second_sparkline").sparkline(events_per_second_buffer, {chartRangeMin: 0, spotColor: false, minSpotColor: false, maxSpotColor: false, width: 100, height: 60});
         }
         if (stat_key == "nginx_requests_per_second") {
-          $("#nginx_requests_per_second").html(stat_val);
+          if (nginx_requests_per_second_buffer.length == buffer_size) {
+            nginx_requests_per_second_buffer.shift();
+          }
+          nginx_requests_per_second_buffer.push(stat_val);
+          $("#nginx_requests_per_second_scalar").html(stat_val);
+          $("#nginx_requests_per_second_sparkline").sparkline(nginx_requests_per_second_buffer, {chartRangeMin: 0, spotColor: false, minSpotColor: false, maxSpotColor: false, width: 100, height: 60});
         }
       }
     };
