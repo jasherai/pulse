@@ -1,6 +1,6 @@
 function pulse_init() {
-  var sparkline_opts = {chartRangeMin: 0, spotColor: false, minSpotColor: false, maxSpotColor: false, width: 180, height: 60};
-  var buffer_size = 90;
+  var sparkline_opts = {chartRangeMin: 0, spotColor: false, minSpotColor: false, maxSpotColor: false, width: 150, height: 60};
+  var buffer_size = 100;
   var buffers = {};
 
   if (!window.WebSocket) {
