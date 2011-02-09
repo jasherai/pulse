@@ -6,7 +6,7 @@ function pulse_init() {
   if (!window.WebSocket) {
     alert("WebSocket not supported by this browser!");
   } else {
-    var ws = new WebSocket("ws://localhost:8080/stats");
+    var ws = new WebSocket(pulse_websocket_url);
     ws.onopen =  function()  { console.log("websocket open"); };
     ws.onclose = function()  { console.log("websocket close") };
     ws.onerror = function(e) { console.log("websocket error error='" + e + "'"); };
