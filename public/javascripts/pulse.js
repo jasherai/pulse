@@ -1,5 +1,5 @@
 function pulseUpdate() {
-  var sparklineOpts = {chartRangeMin: 0, spotColor: false, minSpotColor: false, maxSpotColor: false, width: 150, height: 60};
+  var sparklineOpts = {chartRangeMin: 0, spotColor: false, minSpotColor: false, maxSpotColor: false, width: 210, height: 90};
 
   $.get("/stats", function(stats) {
     for (var statName in stats) {
